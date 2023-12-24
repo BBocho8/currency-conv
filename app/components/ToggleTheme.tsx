@@ -1,10 +1,14 @@
 "use client"
-import { useEffect, useState } from "react"
+import { Dispatch, useEffect, useState } from "react"
 
-const ToggleTheme = () => {
-	const [theme, setTheme] = useState(
-		localStorage.getItem("theme") ? localStorage.getItem("theme") : "coffee"
-	)
+type ToggleThemeProps = {
+	theme: string | null
+	setTheme: React.Dispatch<React.SetStateAction<string | null>>
+}
+const ToggleTheme = ({ theme, setTheme }: ToggleThemeProps) => {
+	// const [theme, setTheme] = useState(
+	// 	localStorage?.getItem("theme") ? localStorage.getItem("theme") : "coffee"
+	// )
 
 	const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.checked) {
@@ -13,13 +17,13 @@ const ToggleTheme = () => {
 			setTheme("emerald")
 		}
 	}
-	useEffect(() => {
-		localStorage.setItem("theme", theme as string)
-		const localTheme = localStorage.getItem("theme")
-		document
-			.querySelector("html")
-			?.setAttribute("data-theme", localTheme as string)
-	}, [theme])
+	// useEffect(() => {
+	// 	localStorage.setItem("theme", theme as string)
+	// 	const localTheme = localStorage.getItem("theme")
+	// 	document
+	// 		.querySelector("html")
+	// 		?.setAttribute("data-theme", localTheme as string)
+	// }, [theme])
 
 	return (
 		<label className="absolute pr-5 top-2 right-4 swap swap-rotate">
