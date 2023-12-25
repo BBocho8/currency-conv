@@ -20,7 +20,10 @@ export const getRate = async (request: Request) => {
 		`https://api.api-ninjas.com/v1/convertcurrency?have=${from}&want=${to}&amount=${amount}`,
 		requestOptions
 	)
-	const data = await response.json()
-
-	return data
+	try {
+		const data = await response.json()
+		return data
+	} catch (error) {
+		console.log(error)
+	}
 }
