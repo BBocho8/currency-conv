@@ -1,4 +1,4 @@
-import { CurrencyListItem, Request, handleSwapProps } from "../types/types"
+import { CurrencyListItem, handleSwapProps } from "../types/types"
 import { getRate } from "./getRate"
 
 const handleQuerySwap = (

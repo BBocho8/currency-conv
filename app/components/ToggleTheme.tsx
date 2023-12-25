@@ -1,5 +1,4 @@
 "use client"
-import { Dispatch, useEffect, useState } from "react"
 
 type ToggleThemeProps = {
 	theme: string | null
