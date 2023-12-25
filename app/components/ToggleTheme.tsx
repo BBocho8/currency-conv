@@ -1,21 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useLocalStorage, useReadLocalStorage } from "usehooks-ts"
+import { useEffect } from "react"
+import { useLocalStorage } from "usehooks-ts"
 
 const ToggleTheme = () => {
-	// const [theme, setTheme] = useState(
-	// 	localStorage?.getItem("theme") ? localStorage.getItem("theme") : "coffee"
-	// )
-
-	// const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	if (e.target.checked) {
-	// 		setTheme("coffee")
-	// 	} else {
-	// 		setTheme("emerald")
-	// 	}
-	// }
-
 	const [isDarkTheme, setDarkTheme] = useLocalStorage("darkTheme", true)
 
 	const toggleTheme = () => {
