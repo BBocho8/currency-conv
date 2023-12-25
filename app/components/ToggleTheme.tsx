@@ -1,36 +1,42 @@
 "use client"
 
-type ToggleThemeProps = {
-	theme: string | null
-	setTheme: React.Dispatch<React.SetStateAction<string | null>>
-}
-const ToggleTheme = ({ theme, setTheme }: ToggleThemeProps) => {
+import { useEffect, useState } from "react"
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts"
+
+const ToggleTheme = () => {
 	// const [theme, setTheme] = useState(
 	// 	localStorage?.getItem("theme") ? localStorage.getItem("theme") : "coffee"
 	// )
 
-	const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.checked) {
-			setTheme("coffee")
-		} else {
-			setTheme("emerald")
-		}
+	// const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	if (e.target.checked) {
+	// 		setTheme("coffee")
+	// 	} else {
+	// 		setTheme("emerald")
+	// 	}
+	// }
+
+	const [isDarkTheme, setDarkTheme] = useLocalStorage("darkTheme", true)
+
+	const toggleTheme = () => {
+		setDarkTheme((prevValue: boolean) => !prevValue)
 	}
-	// useEffect(() => {
-	// 	localStorage.setItem("theme", theme as string)
-	// 	const localTheme = localStorage.getItem("theme")
-	// 	document
-	// 		.querySelector("html")
-	// 		?.setAttribute("data-theme", localTheme as string)
-	// }, [theme])
+
+	useEffect(() => {
+		if (isDarkTheme) {
+			document.querySelector("html")?.setAttribute("data-theme", "coffee")
+		} else if (!isDarkTheme) {
+			document.querySelector("html")?.setAttribute("data-theme", "emerald")
+		}
+	}, [isDarkTheme])
 
 	return (
 		<label className="absolute pr-5 top-2 right-4 swap swap-rotate">
 			{/* this hidden checkbox controls the state */}
 			<input
 				type="checkbox"
-				onChange={handleToggle}
-				checked={theme === "emerald" ? false : true}
+				onChange={toggleTheme}
+				// checked={theme === "emerald" ? false : true}
 			/>
 
 			{/* sun icon */}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { CurrencyListItem, Request } from "../types/types"
 import SwapButton from "./SwapButton"
 import ToggleTheme from "./ToggleTheme"
@@ -14,16 +14,6 @@ type LandingPageProps = {
 	supportedCurrencies: CurrencyListItem[]
 }
 const LandingPage = ({ supportedCurrencies }: LandingPageProps) => {
-	const [theme, setTheme] = useState(
-		localStorage.getItem("theme") ? localStorage.getItem("theme") : "coffee"
-	)
-	useEffect(() => {
-		localStorage.setItem("theme", theme as string)
-		const localTheme = localStorage.getItem("theme")
-		document
-			.querySelector("html")
-			?.setAttribute("data-theme", localTheme as string)
-	}, [theme])
 	const [currencyList, setCurrencyList] = useState<
 		CurrencyListItem[] | undefined
 	>([])
@@ -48,7 +38,7 @@ const LandingPage = ({ supportedCurrencies }: LandingPageProps) => {
 	return (
 		<>
 			<div className="relative max-w-md min-h-screen p-8 mx-auto  ">
-				<ToggleTheme theme={theme} setTheme={setTheme} />
+				<ToggleTheme />
 				<h1 className="mb-8 text-2xl font-medium text-center uppercase">
 					Currency Converter
 				</h1>
